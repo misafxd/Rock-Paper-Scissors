@@ -10,6 +10,19 @@ function getComputerChoice() {
     }
 }
 
+function getPlayerChoice(){
+    const allowed = ["paper", "rock", "scissors"];
+    let choice= "";
+    
+    while(!allowed.includes(choice)){
+        prompt("Rock, Paper, Scissors!!!")
+        choice = prompt("Choose an option: ")
+        choice = choice.toLowerCase();
+    }
+
+    return choice;
+}
+
 
 function playRound(playerSelection, computerSelection) {
     let player = playerSelection.toLowerCase();
@@ -35,11 +48,22 @@ function playRound(playerSelection, computerSelection) {
             return `You lose ${computerSelection} beats ${player}!!`
         }
     }
-
-    
 }
 
-const pSelection = "rock";
-const cSelection = getComputerChoice();
 
-console.log(playRound(pSelection,cSelection));
+function game(){
+    let results = [];
+    let player;
+    let computer;
+
+    for(let i = 1; i<=5; i++){
+        player = getPlayerChoice();
+        computer = getComputerChoice();
+        console.log(playRound(player,computer));
+        results.push(playRound(player,computer));
+    }
+    console.table(results);
+}
+
+game();
+
