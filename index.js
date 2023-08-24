@@ -1,4 +1,5 @@
-const buttons = document.querySelectorAll('.btn')
+const buttons = document.querySelectorAll('.btn');
+const score = document.querySelector('.score');
 let choice = '';
 let results = [];
 
@@ -40,19 +41,24 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game(choice){   
+const p = document.createElement('p');
+score.appendChild(p);
+
+function game(choice){  
     let player = choice;
     let computer = getComputerChoice();
-    console.log(playRound(player,computer));
     results.push(playRound(player,computer));
-    console.table(results);
+
+    p.textContent = `${playRound(player,computer)}`
 }
 
 buttons.forEach(btn => {
     btn.addEventListener('click', () => {
         choice = btn.getAttribute('id');
-        game(choice);
+        game(choice);        
     });
 });
+
+
 
 
