@@ -8,6 +8,8 @@ const reStart = document.createElement('button');
 reStart.classList.add('re-start');
 const pScore = document.querySelector('.player-score');
 const cScore = document.querySelector('.computer-score');
+const pChoice = document.querySelector('.player-choice');
+const cChoice = document.querySelector('.computer-choice');
 
 reStart.addEventListener('click', () => {
     playerResults = 0;
@@ -15,7 +17,7 @@ reStart.addEventListener('click', () => {
     winner.textContent = '';
     p.textContent = '';
     score.removeChild(reStart);
-    showScore(computerResults,playerResults);
+    showWinner(computerResults,playerResults);
 })
 
 let choice = '';
@@ -75,10 +77,6 @@ function showWinner(computerResults, playerResults) {
         winner.textContent = 'You have won 5 rounds';
         score.appendChild(reStart);
     }
-    
-}
-
-function showScore (computerResults,playerResults){
     pScore.textContent = 'Player: ';
     cScore.textContent = 'Computer: ';
     pScore.textContent += playerResults;
@@ -89,6 +87,10 @@ function game(choice){
     let player = choice;
     let computer = getComputerChoice();
     p.textContent = `${playRound(player,computer)}`
+    pChoice.textContent = '';
+    pChoice.textContent += player;
+    cChoice.textContent = '';
+    cChoice.textContent += computer;
     
 }
 
@@ -97,7 +99,6 @@ buttons.forEach(btn => {
         choice = btn.getAttribute('id');
         game(choice);
         showWinner(computerResults,playerResults);  
-        showScore(computerResults,playerResults);    
     });
 });
 
