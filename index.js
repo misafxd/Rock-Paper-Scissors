@@ -1,7 +1,23 @@
 const buttons = document.querySelectorAll('.btn');
 const score = document.querySelector('.score');
+const p = document.createElement('p');
+score.appendChild(p);
+const winner = document.createElement('h2');
+score.insertBefore(winner, p);
+const reStart = document.createElement('button');
+reStart.classList.add('re-start');
+
+reStart.addEventListener('click', () => {
+    playerResults = 0;
+    computerResults = 0;
+    winner.textContent = '';
+    p.textContent = '';
+    score.removeChild(reStart);
+})
+
 let choice = '';
-let results = [];
+let playerResults = 0;
+let computerResults = 0;
 
 function getComputerChoice() {
     let numChoice = Math.floor(Math.random() * 3);
@@ -22,42 +38,58 @@ function playRound(playerSelection, computerSelection) {
         return `It's a tie ${player} vs ${computerSelection}`;
     }else if (player === "rock"){
         if(computerSelection == "scissors"){
+            playerResults++;
             return `You win ${player} beats ${computerSelection}!!`
         } else {
+            computerResults++;
             return `You lose ${computerSelection} beats ${player}!!`
         }
     }else if (player === "scissors"){
         if(computerSelection == "paper"){
+            playerResults++;
             return `You win ${player} beats ${computerSelection}!!`
         } else {
+            computerResults++;
             return `You lose ${computerSelection} beats ${player}!!`
         }
     }else if (player === "paper"){
         if(computerSelection == "rock"){
+            playerResults++;
             return `You win ${player} beats ${computerSelection}!!`
         } else {
+            computerResults++;
             return `You lose ${computerSelection} beats ${player}!!`
         }
     }
 }
 
-const p = document.createElement('p');
-score.appendChild(p);
+function showWinner(computerResults, playerResults) {
+    if (computerResults == 5 ){
+        winner.textContent = 'Computer have won 5 rounds!!!';
+        score.appendChild(reStart);
+    } 
+    if (playerResults == 5){
+        winner.textContent = 'You have won 5 rounds';
+        score.appendChild(reStart);
+    }
+    
+}
 
 function game(choice){  
     let player = choice;
     let computer = getComputerChoice();
-    results.push(playRound(player,computer));
-
     p.textContent = `${playRound(player,computer)}`
+    
 }
 
 buttons.forEach(btn => {
     btn.addEventListener('click', () => {
         choice = btn.getAttribute('id');
-        game(choice);        
+        game(choice);
+        showWinner(computerResults,playerResults);      
     });
 });
+
 
 
 
