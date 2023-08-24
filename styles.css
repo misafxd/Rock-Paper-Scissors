@@ -71,6 +71,7 @@ body::before {
     height: 4rem;
     background: none;
     border-radius: 0.5rem;
+    cursor: pointer;
 }
 
 .btn:active, .re-start:active{
