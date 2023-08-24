@@ -1,3 +1,7 @@
+const buttons = document.querySelectorAll('.btn')
+let choice = '';
+let results = [];
+
 function getComputerChoice() {
     let numChoice = Math.floor(Math.random() * 3);
     switch(numChoice){
@@ -9,20 +13,6 @@ function getComputerChoice() {
         break;
     }
 }
-
-function getPlayerChoice(){
-    const allowed = ["paper", "rock", "scissors"];
-    let choice= "";
-    
-    while(!allowed.includes(choice)){
-        prompt("Rock, Paper, Scissors!!!")
-        choice = prompt("Choose an option: ")
-        choice = choice.toLowerCase();
-    }
-
-    return choice;
-}
-
 
 function playRound(playerSelection, computerSelection) {
     let player = playerSelection.toLowerCase();
@@ -50,20 +40,19 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-
-function game(){
-    let results = [];
-    let player;
-    let computer;
-
-    for(let i = 1; i<=5; i++){
-        player = getPlayerChoice();
-        computer = getComputerChoice();
-        console.log(playRound(player,computer));
-        results.push(playRound(player,computer));
-    }
+function game(choice){   
+    let player = choice;
+    let computer = getComputerChoice();
+    console.log(playRound(player,computer));
+    results.push(playRound(player,computer));
     console.table(results);
 }
 
-game();
+buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        choice = btn.getAttribute('id');
+        game(choice);
+    });
+});
+
 
