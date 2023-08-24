@@ -11,21 +11,25 @@
         <div class="game-title">
             <h1 class="title">Let's play Rock, Paper, Scissors!!!</h1>
         </div>
-        <div class="game">
-            <div class="game-instruction">
-                 <p>Choose your play: </p>
+        <div class="game-container">
+            <p class="player-score">Player: 0</p>
+            <div class="game">
+                <div class="game-instruction">
+                     <p>Choose your play: </p>
+                </div>
+               <div class="game-option">
+                   <button id="rock" class="btn">
+                    <img src="./assets/rock.png" alt="rock" width="48">
+                   </button>
+                   <button id="paper" class="btn">
+                    <img src="./assets/paper.png" alt="paper" width="48">
+                   </button>
+                   <button id="scissors" class="btn">
+                    <img src="./assets/scissor.png" alt="scissor" width="48">
+                   </button>
+               </div>
             </div>
-           <div class="game-option">
-               <button id="rock" class="btn">
-                <img src="./assets/rock.png" alt="rock" width="48">
-               </button>
-               <button id="paper" class="btn">
-                <img src="./assets/paper.png" alt="paper" width="48">
-               </button>
-               <button id="scissors" class="btn">
-                <img src="./assets/scissor.png" alt="scissor" width="48">
-               </button>
-           </div>
+            <p class="computer-score">Computer: 0</p>
         </div>
         <div class="score"></div>
     </div>
